@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Free, private, browser-based phishing email analyzer by VAIB Technical Tools. Inspect email headers, URLs and suspicious indicators.">
+  <title>Phishing Email Analyzer | VAIB Technical Tools</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VAIB Technical Tools home"><span class="brand-mark">V</span><span>VAIB <b>TECHNICAL TOOLS</b></span></a>
+    <div class="top-actions"><span class="privacy-pill"><i></i> 100% local analysis</span><a class="github-link" href="https://github.com/vaibcc/free-Phishing-Email-Analyzer" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> EMAIL SECURITY / THREAT TRIAGE</div>
+      <h1>See what’s hiding<br>inside your <em>inbox.</em></h1>
+      <p class="hero-copy">Inspect suspicious emails, uncover risky links and review authentication clues — without uploading your message anywhere.</p>
+      <div class="hero-meta"><span>NO ACCOUNT</span><span>NO API KEY</span><span>NO SERVER UPLOADS</span></div>
+    </section>
+    <section class="workspace">
+      <div class="panel input-panel">
+        <div class="panel-heading"><div><span class="step">01</span><h2>Submit an email</h2></div><span class="muted-label">.EML / RAW SOURCE</span></div>
+        <div class="tabs" role="tablist" aria-label="Email input method"><button class="tab active" id="paste-tab" role="tab" aria-selected="true">Paste source</button><button class="tab" id="file-tab" role="tab" aria-selected="false">Upload .eml</button></div>
+        <div id="paste-view">
+          <label class="field-label" for="email-source">RAW EMAIL CONTENT / HEADERS</label>
+          <textarea id="email-source" spellcheck="false" placeholder="Paste the complete email source here, including headers such as From, Reply-To, Received and Authentication-Results…"></textarea>
+          <div class="input-footer"><span id="char-count">0 characters</span><button class="text-button" id="sample-button">Load sample email ↗</button></div>
+        </div>
+        <div id="file-view" class="file-view hidden">
+          <label class="drop-zone" for="eml-file"><span class="upload-icon">↑</span><strong>Choose an .eml file</strong><span>or drag and drop it here</span><small>File is read locally in your browser</small></label>
+          <input id="eml-file" type="file" accept=".eml,message/rfc822,text/plain" hidden>
+          <p id="file-name" class="file-name"></p>
+        </div>
+        <div class="action-row"><button class="primary-button" id="analyze-button"><span>Analyze email</span><b>→</b></button><button class="secondary-button" id="clear-button">Clear</button></div>
+        <p class="micro-note"><span>🔒</span> Your email content stays on this device. Nothing is transmitted.</p>
+      </div>
+      <div class="panel empty-panel" id="empty-state">
+        <div class="radar"><div class="radar-ring ring-a"></div><div class="radar-ring ring-b"></div><div class="radar-ring ring-c"></div><div class="radar-sweep"></div><span>V</span></div>
+        <div class="empty-kicker">READY FOR INSPECTION</div><h2>Your analysis<br>will appear here.</h2><p>Submit an email source to reveal sender details, authentication clues, extracted links and a transparent risk assessment.</p>
+        <div class="empty-foot"><span class="status-dot"></span> ENGINE STANDBY</div>
+      </div>
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="results-head"><div><span class="step">02</span><h2>Analysis report</h2></div><div class="report-actions"><button class="secondary-button small" id="export-json">Export JSON ↓</button><button class="secondary-button small" id="export-html">Print report ↗</button></div></div>
+        <div class="risk-card" id="risk-card"><div><span class="muted-label">HEURISTIC RISK SCORE</span><div class="risk-number"><strong id="risk-score">0</strong><span>/100</span></div><p id="risk-summary">No findings yet.</p></div><div class="risk-gauge"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="gauge-bg" cx="60" cy="60" r="49"></circle><circle class="gauge-value" id="gauge-value" cx="60" cy="60" r="49"></circle></svg><span id="risk-level">UNKNOWN</span></div></div>
+        <div class="result-grid">
+          <article class="result-card"><div class="card-title"><span>01</span><h3>Sender identity</h3></div><dl id="sender-details"></dl></article>
+          <article class="result-card"><div class="card-title"><span>02</span><h3>Authentication clues</h3></div><div id="auth-details"></div><p class="disclaimer">Parsed from supplied headers only. These values are not independently verified.</p></article>
+        </div>
+        <article class="result-card findings-card"><div class="card-title"><span>03</span><h3>Security findings</h3><span class="finding-count" id="finding-count">0 findings</span></div><div id="findings-list"></div></article>
+        <article class="result-card"><div class="card-title"><span>04</span><h3>Extracted links</h3><span class="finding-count" id="url-count">0 URLs</span></div><div id="url-list" class="url-list"></div></article>
+        <div class="disclaimer-banner"><strong>Important:</strong> This tool provides heuristic triage, not a definitive verdict. Do not click suspicious links or open unexpected attachments. Verify messages through a trusted channel.</div>
+      </section>
+    </section>
+    <footer><span>© 2026 VAIB TECHNICAL TOOLS</span><span>BUILT FOR A SAFER INBOX <b>·</b> OPEN SOURCE</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
