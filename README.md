@@ -11,15 +11,6 @@ A free, browser-based tool for inspecting suspicious email messages and identify
 - Calculate a transparent heuristic risk score and explain each finding.
 - Export a JSON report or print the report to PDF.
 
-## Search engine and AI discovery files
-
-The repository includes:
-- [robots.txt](robots.txt) — crawler access rules and sitemap location.
-- [sitemap.xml](sitemap.xml) — canonical URL for the application.
-- [llms.txt](llms.txt) — concise project information for AI assistants and language-model crawlers.
-- [llms-full.txt](llms-full.txt) — expanded project description and feature/limitation details.
-
-The sitemap and crawler files currently use the GitHub Pages project URL: https://vaibcc.github.io/free-Phishing-Email-Analyzer/ If you publish under a custom domain or another hosting URL, update the canonical URL in `sitemap.xml`, the Sitemap directive in `robots.txt`, and the base URL in these LLM information files.
 
 ## Important authentication limitation
 
