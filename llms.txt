@@ -1,0 +1,26 @@
+# VAIB Free Phishing Email Analyzer
+
+> A free, browser-based email phishing triage tool by VAIB Technical Tools. It analyzes pasted raw email source or local .eml files without uploading email content to a backend.
+
+## Project
+- Website: https://vaibcc.github.io/free-Phishing-Email-Analyzer/
+- Source code: https://github.com/vaibcc/free-Phishing-Email-Analyzer
+- License: MIT
+- Technology: HTML, CSS and vanilla JavaScript; no build step or API key required.
+
+## Main capabilities
+- Parse common email headers: From, Reply-To, Return-Path, Subject and Received.
+- Extract HTTP and HTTPS URLs.
+- Flag heuristic indicators such as Reply-To/From domain mismatch, IP-address URLs, URL shorteners, HTTP links, unusual hostnames, urgency language and reported authentication failures.
+- Parse SPF, DKIM and DMARC results when present in supplied Authentication-Results or Received-SPF headers.
+- Produce an explainable heuristic score and export a JSON report.
+
+## Important limitations
+- Authentication results are read from supplied headers; they are not independently verified. Headers may be forged.
+- The analyzer does not query DNS, validate DKIM signatures, test SPF/DMARC alignment, visit URLs, inspect binary attachments or use threat-intelligence feeds.
+- Scores are heuristic and can produce false positives and false negatives. This tool is not a substitute for mail security controls or incident response.
+- Email content is processed in the browser. The page currently loads Google Fonts remotely for visual styling.
+
+## Documentation
+- README: https://github.com/vaibcc/free-Phishing-Email-Analyzer/blob/main/README.md
+- Full AI-readable project notes: https://vaibcc.github.io/free-Phishing-Email-Analyzer/llms-full.txt

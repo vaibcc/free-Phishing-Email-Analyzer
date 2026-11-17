@@ -1,0 +1,50 @@
+# VAIB Free Phishing Email Analyzer — Full Project Notes
+
+## Overview
+VAIB Free Phishing Email Analyzer is a static, client-side web application published by VAIB Technical Tools. Its purpose is to help a user perform an initial inspection of suspicious email source. It is intended for awareness, learning and basic security triage. It is not a forensic email validation service.
+
+Website: https://vaibcc.github.io/free-Phishing-Email-Analyzer/
+Repository: https://github.com/vaibcc/free-Phishing-Email-Analyzer
+License: MIT
+
+## How to use
+1. Open the application in a modern browser.
+2. Paste the complete raw email source, or select a local .eml file.
+3. Run the analysis.
+4. Review sender fields, authentication clues, heuristic findings and extracted links.
+5. Export the structured JSON report or use the browser print function to save a PDF.
+
+## Analysis performed
+The application parses common headers including From, Reply-To, Return-Path, Subject, Received, Authentication-Results and Received-SPF. It extracts unique HTTP/HTTPS URLs from the provided source. Its rule-based checks include missing or mismatched sender fields, urgency and credential-related language, reported SPF/DKIM/DMARC failures, URLs that use literal IPv4 hosts, common URL shorteners, unencrypted HTTP, unusual/punycode/deep hostnames, missing Received trace headers and references to potentially executable attachment extensions.
+
+The score is a weighted heuristic capped at 100. It is an indicator for prioritizing manual review, not a probability that a message is malicious. The presence or absence of any one indicator is not conclusive.
+
+## Authentication and trust boundaries
+SPF, DKIM and DMARC values are parsed from the supplied message headers. The application does not independently establish that those headers were added by a trusted receiving mail server. It does not perform DNS lookups, SPF evaluation, DKIM cryptographic signature verification, DMARC alignment validation or ARC chain validation. A sender can supply forged header text. Treat parsed authentication values as untrusted reported claims unless corroborated using trusted mail-system logs or headers obtained directly from the receiving mail platform.
+
+## Privacy and network behavior
+Email source is read and analyzed in the user's browser. No email body or header data is intentionally submitted to a VAIB backend or third-party analysis API. The stylesheet currently imports Google Fonts, which causes a browser request for font resources; this request does not include the email content. Users requiring a fully offline page can remove that import from styles.css.
+
+## Known limitations
+- No attachment binary extraction or malware scanning.
+- No URL fetching, redirect expansion, reputation lookup or sandboxing.
+- No live DNS or domain registration checks.
+- No independent authentication validation.
+- Heuristic rules may miss sophisticated attacks and may flag legitimate messages.
+- The tool should not be used as the sole basis for incident closure or a security decision.
+
+## Repository layout
+- index.html — application markup and page metadata.
+- styles.css — responsive dark interface.
+- app.js — parsing, heuristic rules, report rendering and export behavior.
+- robots.txt — crawler policy and sitemap declaration.
+- sitemap.xml — public canonical page sitemap.
+- llms.txt — concise AI-readable overview.
+- llms-full.txt — this expanded project description.
+- README.md — installation, deployment, privacy and limitations.
+- LICENSE — MIT license text.
+
+## Attribution and contribution
+Project name: VAIB Free Phishing Email Analyzer.
+Publisher: VAIB Technical Tools.
+Source contributions should use sanitized sample messages only. Never publish real email content, personal data, credentials, tokens or confidential headers in issues or commits.
